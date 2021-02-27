@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue源码实现</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1 v-text="mag"></h1>
+			<h3 v-text="person.name"></h3>
+			<h5>{{person.age}}</h5>
+			<ul>
+				<li>{{person.name}}----{{person.age}}</li>
+				<li>{{person.age}}</li>
+			</ul>
+			<div v-html="hnode"></div>
+			<input type="text" v-model="mag">
+			<img v-bind:src="addImg" :style="size">
+			<button v-on:click="showAlert">按钮v-on</button>
+			<button @click="showAlert2">按钮@</button>
+		</div>
+		<script src="./Mvue.js"></script>
+		<script>
+			let vm = new Mvue({
+				el: "#app",
+				data: {
+					mag: "天行健，君子以自强不息",
+					person: {
+						name: "刘亦菲",
+						age: "27"
+					},
+					hnode: "<a href='#'>请百度</a>",
+					addImg: "./image/771.jpg",
+					size: "width: 260px; height: 160px; border: 2px solid red"
+				},
+				methods: {
+					showAlert() {
+						this.mag = "data改变，视图更新了";
+						alert("点击了按钮v-on");
+					},
+					showAlert2() {
+						alert("点击了按钮@");
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
